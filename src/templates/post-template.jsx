@@ -34,7 +34,6 @@ export const pageQuery = graphql`
           name
           twitter
         }
-        disqusShortname
         url
       }
     }

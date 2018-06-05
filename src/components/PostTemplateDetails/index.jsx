@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import moment from 'moment'
-import Disqus from '../Disqus/Disqus'
 import './style.scss'
 
 class PostTemplateDetails extends React.Component {
@@ -33,14 +32,7 @@ class PostTemplateDetails extends React.Component {
       </div>
     )
 
-    const commentsBlock = (
-      <div>
-        <Disqus
-          postNode={post}
-          siteMetadata={this.props.data.site.siteMetadata}
-        />
-      </div>
-    )
+    const commentsBlock = <div />
 
     return (
       <div>
