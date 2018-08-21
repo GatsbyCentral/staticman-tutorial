@@ -25,6 +25,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "gatsby": "^1.9.164",
+    "gatsby-cli": "^1.1.58",
     "gatsby-link": "^1.6.34",
     "gatsby-plugin-catch-links": "^1.0.14",
     "gatsby-plugin-feed": "^1.3.15",
