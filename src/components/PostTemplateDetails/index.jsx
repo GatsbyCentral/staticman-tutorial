@@ -37,6 +37,26 @@ class PostTemplateDetails extends React.Component {
         <hr />
         <h2>Comments</h2>
         <p>No comments yet.</p>
+        <h3>Add a comment</h3>
+        <form
+          method="POST"
+          action="https://api.staticman.net/v2/entry/jtpolasek/staticman-tutorial/master/comments"
+        >
+          <input
+            name="options[slug]"
+            type="hidden"
+            value={this.props.pathContext.slug}
+          />
+          <input name="fields[name]" type="text" placeholder="Name" required />
+          <input
+            name="fields[email]"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <textarea name="fields[message]" placeholder="Comment" required />
+          <button type="submit">Submit Comment</button>
+        </form>
       </div>
     )
 
