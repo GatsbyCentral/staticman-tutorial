@@ -6,6 +6,8 @@ import './style.scss'
 class PostTemplateDetails extends React.Component {
   render() {
     const { subtitle, author } = this.props.data.site.siteMetadata
+    const comments =
+      this.props.data.allCommentsYaml && this.props.data.allCommentsYaml.edges
     const post = this.props.data.markdownRemark
     const tags = post.fields.tagSlugs
 
@@ -31,8 +33,51 @@ class PostTemplateDetails extends React.Component {
         </ul>
       </div>
     )
+    const commentsList =
+      comments && comments.length ? (
+        comments.map(comment => (
+          <div key={comment.node.id}>
+            <p>
+              Name: {comment.node.name}
+              <br />
+              Comment: {comment.node.message}
+              <br />
+              Date: {comment.node.date}
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>No comments yet.</p>
+      )
 
-    const commentsBlock = <div />
+    const commentsBlock = (
+      <div>
+        <hr />
+        <h2>Comments</h2>
+        {commentsList}
+
+        <h3>Add a comment</h3>
+        <form
+          method="POST"
+          action="https://api.staticman.net/v2/entry/jtpolasek/staticman-tutorial/master/comments"
+        >
+          <input
+            name="options[slug]"
+            type="hidden"
+            value={this.props.pathContext.slug}
+          />
+          <input name="fields[name]" type="text" placeholder="Name" required />
+          <input
+            name="fields[email]"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <textarea name="fields[message]" placeholder="Comment" required />
+          <button type="submit">Submit Comment</button>
+        </form>
+      </div>
+    )
 
     return (
       <div>
@@ -52,6 +97,7 @@ class PostTemplateDetails extends React.Component {
           </div>
           <div className="post-single__footer">
             {tagsBlock}
+            {commentsBlock}
             <hr />
             <p className="post-single__footer-text">
               {subtitle}
@@ -63,7 +109,6 @@ class PostTemplateDetails extends React.Component {
                 <br /> <strong>{author.name}</strong> on Twitter
               </a>
             </p>
-            {commentsBlock}
           </div>
         </div>
       </div>
