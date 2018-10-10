@@ -57,7 +57,10 @@ class PostTemplateDetails extends React.Component {
         {commentsList}
 
         <h3>Add a comment</h3>
-        <form method="POST" action="YOUR_FORM_URL">
+        <form
+          method="POST"
+          action="https://api.staticman.net/v2/entry/jtpolasek/staticman-tutorial/master/comments"
+        >
           <input
             name="options[slug]"
             type="hidden"
